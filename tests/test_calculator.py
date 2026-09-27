@@ -1,10 +1,7 @@
 """ tests/test_calculator.py """
 import sys
 from io import StringIO
-
-from app import calculator
-
-
+from app.calculator import calculator as run_calculator
 
 # Helper function to capture print statements
 def run_calculator_with_input(monkeypatch, inputs):
@@ -21,10 +18,9 @@ def run_calculator_with_input(monkeypatch, inputs):
     # Capture the output of the calculator
     captured_output = StringIO()
     sys.stdout = captured_output
-    calculator()
+    run_calculator()  # Call the calculator function to run the REPL
     sys.stdout = sys.__stdout__  # Reset stdout
     return captured_output.getvalue()
-
 
 # Positive Tests
 def test_addition(monkeypatch):
